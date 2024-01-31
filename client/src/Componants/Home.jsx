@@ -1,10 +1,21 @@
 import React from "react";
 import "./Home.css";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Box, Text,Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Login from "./Login";
 import Signup from "./Signup";
 
 function Home() {
+
+  const navigate = useNavigate(); // Use useNavigate
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user) navigate("/chat"); // Use navigate to redirect
+  }, [navigate]);
+
   return (
     <Container className="home" maxW="xl" centerContent>
       <Box

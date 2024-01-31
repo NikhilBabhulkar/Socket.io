@@ -8,7 +8,8 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./Componants/Assets/Images/backgrond.jpg");
+  /* background-image: url("./Componants/Assets/Images/backgrond.jpg"); */
+  background-image: url("https://img.freepik.com/free-vector/abstract-pixel-rain-background_23-2148383734.jpg?w=996&t=st=1706726749~exp=1706727349~hmac=272d66aff3f9b37e7a311b70ff676c100a7a045659dbb77b7f5933c8df69c154");
   background-position: center;
   background-size: cover;
   min-height: 100vh;
