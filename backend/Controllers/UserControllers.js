@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const generateToken = require("../Config/generateToken");
+const asyncHandler = require("express-async-handler");
 
 const registerUser = async (req, res) => {
   const { name, email, password, pic } = req.body;
@@ -76,4 +77,25 @@ const authUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, authUser };
+const allUser = asyncHandler(async (req, res) => {
+  try {
+    const keyword = req.query.search
+      ? {
+          $or: [
+            { name: { $regex: req.query.search, $options: 'i' } }, // Case-insensitive search for name
+            { email: { $regex: req.query.search, $options: 'i' } }, 
+          ],
+        }
+      : {};
+    const users = await User.find(keyword);
+
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Server Error' });
+  }
+});
+
+
+
+module.exports = { registerUser, authUser,allUser };
