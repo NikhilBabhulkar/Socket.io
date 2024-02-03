@@ -77,7 +77,7 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`http://localhost:5001api/user?search=${search}`, config);
+      const { data } = await axios.get(`http://localhost:5001/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -142,7 +142,7 @@ function SideDrawer() {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+          Let's Chat
         </Text>
         <div>
           <Menu>
