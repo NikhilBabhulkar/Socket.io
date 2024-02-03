@@ -51,7 +51,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:5001/api/user",
+        "http://3.87.210.16:5001/api/user",
         {
           name,
           email,

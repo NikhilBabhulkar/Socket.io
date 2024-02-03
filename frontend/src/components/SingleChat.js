@@ -51,7 +51,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `http://localhost:5001/api/message/${selectedChat._id}`,
+        `http://3.87.210.16:5001/api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -82,7 +82,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5001/api/message",
+          "http://3.87.210.16:5001/api/message",
           {
             content: newMessage,
             chatId: selectedChat,
