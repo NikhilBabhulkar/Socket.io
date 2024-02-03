@@ -51,7 +51,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "http://3.87.210.16:5001/api/user",
+        "/user",
         {
           name,
           email,
@@ -101,8 +101,8 @@ const Signup = () => {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "dnixu4d4g");
-      fetch("https://api.cloudinary.com/v1_1/dnixu4d4g/image/upload", {
+      data.append("cloud_name", "piyushproj");
+      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
         method: "post",
         body: data,
       })

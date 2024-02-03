@@ -50,7 +50,7 @@ const GroupChatModal = ({ children }) => {
     if (!query) {
       return;
     }
-  
+
     try {
       setLoading(true);
       const config = {
@@ -58,19 +58,13 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`http://3.87.210.16:5001/api/user?search=${search}`, config);
-  
-      // Ensure that data is an array before setting search result
-      if (Array.isArray(data)) {
-        setSearchResult(data);
-      } else {
-        setSearchResult([]); // Set to an empty array if data is not an array
-      }
-  
+      const { data } = await axios.get(`/user?search=${search}`, config);
+      console.log(data);
       setLoading(false);
+      setSearchResult(data);
     } catch (error) {
       toast({
-        title: "Error Occurred!",
+        title: "Error Occured!",
         description: "Failed to Load the Search Results",
         status: "error",
         duration: 5000,
@@ -79,7 +73,6 @@ const GroupChatModal = ({ children }) => {
       });
     }
   };
-  
 
   const handleDelete = (delUser) => {
     setSelectedUsers(selectedUsers.filter((sel) => sel._id !== delUser._id));
@@ -104,7 +97,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `http://3.87.210.16:5001/api/chat/group`,
+        `/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

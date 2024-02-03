@@ -77,7 +77,7 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`http://3.87.210.16:5001/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -104,7 +104,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`http://3.87.210.16:5001/api/chat`, { userId }, config);
+      const { data } = await axios.post(`/chat`, { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
@@ -142,7 +142,7 @@ function SideDrawer() {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontFamily="Work sans">
-          Let's Chat
+          Talk-A-Tive
         </Text>
         <div>
           <Menu>
