@@ -3,18 +3,22 @@ const bcrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
+    name: { type: "String", required: true },
+    email: { type: "String", unique: true, required: true },
+    password: { type: "String", required: true },
     pic: {
-      type: String,
+      type: "String",
+      required: true,
       default:
-        "https://images.unsplash.com/photo-1610631066894-62452ccb927c?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestaps: true }
 );
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
@@ -22,7 +26,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
+  if (!this.isModified) {
     next();
   }
 
@@ -31,4 +35,5 @@ userSchema.pre("save", async function (next) {
 });
 
 const User = mongoose.model("User", userSchema);
+
 module.exports = User;
